@@ -1,0 +1,110 @@
+# .github/workflows/ci.yml
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+        cache: 'npm'
+    
+    - name: Install dependencies
+      run: npm ci
+    
+    - name: Validate content
+      run: npm run content:validate
+    
+    - name: Run tests
+      run: npm run test:coverage
+    
+    - name: Lint code
+      run: npm run lint
+    
+    - name: Build application
+      run: npm run build
+
+  content-review:
+    runs-on: ubuntu-latest
+    if: contains(github.event.pull_request.labels.*.name, 'content')
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+        cache: 'npm'
+    
+    - name: Install dependencies
+      run: npm ci
+    
+    - name: Validate cultural content
+      run: npm run content:validate -- --strict
+    
+    - name: Check cultural accuracy
+      run: node scripts/cultural-accuracy-check.js
+    
+    - name: Comment PR with content review
+      uses: actions/github-script@v6
+      with:
+        script: |
+          const fs = require('fs');
+          const report = JSON.parse(fs.readFileSync('content-review-report.json'));
+          
+          const comment = `## Cultural Content Review
+          
+          **Cultural Accuracy Score**: ${report.culturalAccuracy}/100
+          **Respectfulness Score**: ${report.respectfulness}/100
+          
+          ### Recommendations:
+          ${report.recommendations.map(r => `- ${r}`).join('\n')}
+          
+          ### Cultural Review Status:
+          ${report.culturalAccuracy >= 80 ? '✅ Approved for cultural accuracy' : '❌ Needs cultural review'}
+          `;
+          
+          github.rest.issues.createComment({
+            issue_number: context.issue.number,
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            body: comment
+          });
+
+  deploy:
+    needs: [test, content-review]
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+        cache: 'npm'
+    
+    - name: Install dependencies
+      run: npm ci
+    
+    - name: Build for production
+      run: npm run build
+      env:
+        GENERATE_SOURCEMAP: false
+    
+    - name: Deploy to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./build
+        cname: asahi-x-family.com # If you have a custom domain
