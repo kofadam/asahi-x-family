@@ -116,3 +116,6 @@ dist
 # Temporary folders
 tmp/
 temp/
+
+# Cloude
+CLAUDE.md
