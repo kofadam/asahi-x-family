@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { Sun, BookOpen, Users, Zap, Heart, Target, ArrowRight } from 'lucide-react'
+import { Sun, BookOpen, Users, Zap, Heart, Target, ArrowRight, Brain, RefreshCw, Trophy, Play } from 'lucide-react'
 import { useApp } from '../contexts/AppContext'
 
 const HomePage = () => {
@@ -43,6 +43,78 @@ const HomePage = () => {
               Review {user.pendingReviews} Items
             </Link>
           )}
+        </div>
+      </div>
+
+      {/* Featured: Complete Learning Module */}
+      <div className="bg-gradient-to-r from-yellow-500/20 to-orange-500/20 backdrop-blur-sm rounded-xl p-8 mb-12 max-w-5xl mx-auto border border-yellow-500/30">
+        <div className="text-center mb-6">
+          <div className="inline-flex items-center justify-center w-16 h-16 bg-yellow-400 rounded-full mb-4">
+            <Trophy className="w-8 h-8 text-gray-900" />
+          </div>
+          <h2 className="text-3xl font-bold text-white mb-2">✨ Try Our Complete Learning Experience</h2>
+          <p className="text-xl text-blue-100">
+            Experience the full learning cycle: Cultural Insight → Pattern Recognition → Interactive Practice → Cultural Feedback → Spaced Review
+          </p>
+        </div>
+
+        <div className="bg-white/10 rounded-xl p-6 mb-6">
+          <div className="flex items-center mb-4">
+            <span className="text-4xl mr-4">🙇‍♀️</span>
+            <div>
+              <h3 className="text-2xl font-bold text-white">How to Bow to a Stranger in a Shop</h3>
+              <p className="text-blue-100">Master respectful interactions with Japanese cultural etiquette</p>
+            </div>
+          </div>
+
+          <div className="grid md:grid-cols-5 gap-4 mb-6">
+            <div className="text-center p-3 bg-white/5 rounded-lg">
+              <BookOpen className="w-6 h-6 mx-auto mb-2 text-blue-300" />
+              <div className="text-sm font-medium text-blue-300">Cultural Insight</div>
+              <div className="text-xs text-blue-200">3 min</div>
+            </div>
+            <div className="text-center p-3 bg-white/5 rounded-lg">
+              <Brain className="w-6 h-6 mx-auto mb-2 text-purple-300" />
+              <div className="text-sm font-medium text-purple-300">Pattern Recognition</div>
+              <div className="text-xs text-blue-200">5 min</div>
+            </div>
+            <div className="text-center p-3 bg-white/5 rounded-lg">
+              <Target className="w-6 h-6 mx-auto mb-2 text-green-300" />
+              <div className="text-sm font-medium text-green-300">Interactive Practice</div>
+              <div className="text-xs text-blue-200">7 min</div>
+            </div>
+            <div className="text-center p-3 bg-white/5 rounded-lg">
+              <Trophy className="w-6 h-6 mx-auto mb-2 text-yellow-300" />
+              <div className="text-sm font-medium text-yellow-300">Cultural Feedback</div>
+              <div className="text-xs text-blue-200">2 min</div>
+            </div>
+            <div className="text-center p-3 bg-white/5 rounded-lg">
+              <RefreshCw className="w-6 h-6 mx-auto mb-2 text-orange-300" />
+              <div className="text-sm font-medium text-orange-300">Spaced Review</div>
+              <div className="text-xs text-blue-200">1 min</div>
+            </div>
+          </div>
+
+          <div className="text-center">
+            <Link
+              to="/modules/bowing-etiquette"
+              className="inline-flex items-center px-8 py-4 bg-yellow-400 text-gray-900 rounded-lg font-semibold hover:bg-yellow-300 transition-colors text-lg"
+            >
+              <Play className="w-6 h-6 mr-2" />
+              Start Complete Module
+              <ArrowRight className="w-6 h-6 ml-2" />
+            </Link>
+            <p className="text-sm text-blue-200 mt-3">
+              Experience the full learning cycle described in our methodology
+            </p>
+          </div>
+        </div>
+
+        <div className="text-center">
+          <p className="text-blue-100 text-sm">
+            This demonstrates our <strong>5-step learning methodology</strong> that combines cultural education,
+            pattern recognition, interactive practice, immediate feedback, and spaced repetition for optimal retention.
+          </p>
         </div>
       </div>
 

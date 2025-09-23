@@ -20,6 +20,9 @@ const TrainEtiquettePage = lazy(() => import('./pages/scenarios/TrainEtiquettePa
 const RestaurantOrderingPage = lazy(() => import('./pages/scenarios/RestaurantOrderingPage'))
 const TempleVisitsPage = lazy(() => import('./pages/scenarios/TempleVisitsPage'))
 
+// Learning modules
+const BowingEtiquetteModule = lazy(() => import('./pages/modules/BowingEtiquetteModule'))
+
 function App() {
   return (
     <AppProvider>
@@ -36,6 +39,7 @@ function App() {
               <Route path="/practice/train-etiquette" element={<TrainEtiquettePage />} />
               <Route path="/practice/restaurant-ordering" element={<RestaurantOrderingPage />} />
               <Route path="/practice/temple-visits" element={<TempleVisitsPage />} />
+              <Route path="/modules/bowing-etiquette" element={<BowingEtiquetteModule />} />
               <Route path="/review" element={<ReviewPage />} />
               <Route path="/progress" element={<ProgressPage />} />
               <Route path="/profile" element={<ProfilePage />} />
