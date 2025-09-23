@@ -1,9 +1,10 @@
 import React from 'react'
 import Navigation from './Navigation'
+import AchievementNotification from '../ui/AchievementNotification'
 import { useApp } from '../../contexts/AppContext'
 
 const Layout = ({ children }) => {
-  const { user } = useApp()
+  const { user, achievementNotification, clearAchievementNotification } = useApp()
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-900 to-purple-900">
@@ -12,9 +13,15 @@ const Layout = ({ children }) => {
       <main className="container mx-auto px-4 py-8">
         {user?.streakCount > 0 && (
           <div className="mb-6 flex justify-center">
-            <div className="inline-flex items-center px-4 py-2 rounded-full bg-orange-500/20 text-orange-300 border border-orange-500/30">
-              <span className="text-2xl mr-2">🔥</span>
-              <span className="font-semibold">{user.streakCount} Day Streak!</span>
+            <div className="inline-flex items-center px-6 py-3 rounded-full bg-gradient-to-r from-orange-500/30 to-red-500/30 text-orange-200 border border-orange-400/50 backdrop-blur-sm animate-pulse">
+              <span className="text-3xl mr-3 animate-bounce">🔥</span>
+              <div className="text-center">
+                <div className="font-bold text-lg">{user.streakCount} 日連続!</div>
+                <div className="text-xs text-orange-300">
+                  {user.streakCount >= 7 ? "Weekly Warrior! 週間戦士！" : "Keep it up! がんばって！"}
+                </div>
+              </div>
+              <span className="text-2xl ml-3 animate-spin" style={{ animationDuration: '3s' }}>⚡</span>
             </div>
           </div>
         )}
@@ -35,6 +42,12 @@ const Layout = ({ children }) => {
           </a>
         </p>
       </footer>
+
+      {/* Achievement Notification */}
+      <AchievementNotification
+        achievement={achievementNotification}
+        onClose={clearAchievementNotification}
+      />
     </div>
   )
 }
