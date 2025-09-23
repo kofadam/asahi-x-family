@@ -24,8 +24,8 @@ export const lessons = [
         animeExamples: [
           { title: 'アニメ', romaji: 'anime', english: 'Anime', vowels: ['ア', 'イ', 'エ'], description: 'The word that started it all!' },
           { title: 'エヴァンゲリオン', romaji: 'evangerion', english: 'Evangelion', vowels: ['エ', 'ア', 'エ', 'イ', 'オ'], description: 'Classic mecha series' },
-          { title: 'アタック・オン・タイタン', romaji: 'attack on titan', english: 'Attack on Titan', vowels: ['ア', 'ア', 'オ', 'ア', 'イ', 'ア'], description: 'Popular action anime' },
-          { title: 'オネピース', romaji: 'one piece', english: 'One Piece', vowels: ['オ', 'エ', 'イ', 'ウ'], description: 'Epic pirate adventure' }
+          { title: '進撃の巨人', romaji: 'shingeki no kyojin', english: 'Attack on Titan', vowels: ['イ', 'エ', 'イ', 'オ', 'ウ', 'イ'], description: 'Popular action anime' },
+          { title: 'ワンピース', romaji: 'wan piisu', english: 'One Piece', vowels: ['ワ', 'ピ', 'ウ'], description: 'Epic pirate adventure' }
         ],
         tip: '🎌 Fun fact: The ア in "アニメ" (anime) is the same ア you\'re learning now!'
       },
