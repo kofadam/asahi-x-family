@@ -320,6 +320,7 @@ const LearnPage = () => {
             )}
           </div>
         )
+      }
 
       case 'word_reading':
         return (
@@ -374,9 +375,8 @@ const LearnPage = () => {
             </div>
           </div>
         )
-      }
 
-      case 'speed_drill':
+      case 'speed_drill': {
         const speedChar = step.characters[currentCharacterIndex]
         return (
           <div className="space-y-6">
@@ -432,6 +432,7 @@ const LearnPage = () => {
             )}
           </div>
         )
+      }
 
       default:
         return (
