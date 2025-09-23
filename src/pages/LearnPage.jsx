@@ -49,9 +49,9 @@ const LearnPage = () => {
   useEffect(() => {
     const currentStep = currentLesson?.steps[lessonStep]
     if ((currentStep?.type === 'recognition' || currentStep?.type === 'speed_drill') && currentStep.characters) {
-      const currentChar = currentStep.characters[currentCharacterIndex]
-      if (currentChar) {
-        const choices = generateChoices(currentChar.romaji, currentStep.characters)
+      const stepChar = currentStep.characters[currentCharacterIndex]
+      if (stepChar) {
+        const choices = generateChoices(stepChar.romaji, currentStep.characters)
         setCurrentChoices(choices)
       }
     } else {
@@ -261,7 +261,7 @@ const LearnPage = () => {
           </div>
         )
 
-      case 'recognition':
+      case 'recognition': {
         const currentChar = step.characters[currentCharacterIndex]
         return (
           <div className="space-y-6">
@@ -374,6 +374,7 @@ const LearnPage = () => {
             </div>
           </div>
         )
+      }
 
       case 'speed_drill':
         const speedChar = step.characters[currentCharacterIndex]

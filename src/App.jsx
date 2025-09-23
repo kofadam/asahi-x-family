@@ -14,6 +14,12 @@ const ReviewPage = lazy(() => import('./pages/ReviewPage'))
 const ProgressPage = lazy(() => import('./pages/ProgressPage'))
 const ProfilePage = lazy(() => import('./pages/ProfilePage'))
 
+// Scenario pages
+const EnteringShopPage = lazy(() => import('./pages/scenarios/EnteringShopPage'))
+const TrainEtiquettePage = lazy(() => import('./pages/scenarios/TrainEtiquettePage'))
+const RestaurantOrderingPage = lazy(() => import('./pages/scenarios/RestaurantOrderingPage'))
+const TempleVisitsPage = lazy(() => import('./pages/scenarios/TempleVisitsPage'))
+
 function App() {
   return (
     <AppProvider>
@@ -26,6 +32,10 @@ function App() {
               <Route path="/lessons" element={<LessonSelectionPage />} />
               <Route path="/learn/:lessonId" element={<LearnPage />} />
               <Route path="/practice" element={<PracticePage />} />
+              <Route path="/practice/entering-shop" element={<EnteringShopPage />} />
+              <Route path="/practice/train-etiquette" element={<TrainEtiquettePage />} />
+              <Route path="/practice/restaurant-ordering" element={<RestaurantOrderingPage />} />
+              <Route path="/practice/temple-visits" element={<TempleVisitsPage />} />
               <Route path="/review" element={<ReviewPage />} />
               <Route path="/progress" element={<ProgressPage />} />
               <Route path="/profile" element={<ProfilePage />} />
