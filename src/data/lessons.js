@@ -23,9 +23,9 @@ export const lessons = [
         characters: katakanaData.vowels,
         animeExamples: [
           { title: 'アニメ', romaji: 'anime', english: 'Anime', vowels: ['ア', 'イ', 'エ'], description: 'The word that started it all!' },
-          { title: 'エヴァンゲリオン', romaji: 'evangerion', english: 'Evangelion', vowels: ['エ', 'ア', 'エ', 'イ', 'オ'], description: 'Classic mecha series' },
-          { title: '進撃の巨人', romaji: 'shingeki no kyojin', english: 'Attack on Titan', vowels: ['イ', 'エ', 'イ', 'オ', 'ウ', 'イ'], description: 'Popular action anime' },
-          { title: 'ワンピース', romaji: 'wan piisu', english: 'One Piece', vowels: ['ワ', 'ピ', 'ウ'], description: 'Epic pirate adventure' }
+          { title: 'アイ', romaji: 'ai', english: 'Love', vowels: ['ア', 'イ'], description: 'Simple word using A and I vowels' },
+          { title: 'ウエ', romaji: 'ue', english: 'Above', vowels: ['ウ', 'エ'], description: 'Simple word using U and E vowels' },
+          { title: 'オア', romaji: 'oa', english: 'Oar', vowels: ['オ', 'ア'], description: 'Simple word using O and A vowels' }
         ],
         tip: '🎌 Fun fact: The ア in "アニメ" (anime) is the same ア you\'re learning now!'
       },
