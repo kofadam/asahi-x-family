@@ -6,34 +6,52 @@ import { useApp } from '../contexts/AppContext'
 const PracticePage = () => {
   const { user } = useApp()
 
+  const handleScenarioClick = (scenario) => {
+    if (scenario.locked) {
+      return // Do nothing if locked
+    }
+
+    if (scenario.action === 'practice') {
+      // For now, redirect to lessons until we implement specific scenario practice
+      window.location.href = '/lessons'
+    } else if (scenario.action === 'coming-soon') {
+      // Show coming soon message
+      alert('🚧 This scenario is coming soon! Complete more lessons to unlock it.')
+    }
+  }
+
   const scenarios = [
     {
-      id: 'scenario-001',
-      title: 'Entering a Shop',
+      id: 'reading-signs',
+      title: 'Reading Street Signs',
       difficulty: 'Beginner',
-      description: 'Practice appropriate greetings and behavior when entering Japanese shops',
-      locked: false
+      description: 'Practice reading katakana words on Japanese street signs and shop names',
+      locked: false,
+      action: 'practice'
     },
     {
-      id: 'scenario-002',
-      title: 'Train Etiquette',
+      id: 'anime-shop',
+      title: 'Akihabara Anime Shop',
       difficulty: 'Beginner',
-      description: 'Learn proper behavior on Japanese trains and stations',
-      locked: false
+      description: 'Read anime titles and merchandise names in katakana like a pro otaku!',
+      locked: false,
+      action: 'practice'
     },
     {
-      id: 'scenario-003',
-      title: 'Restaurant Ordering',
+      id: 'convenience-store',
+      title: 'Konbini Adventure',
       difficulty: 'Intermediate',
-      description: 'Navigate ordering in various types of Japanese restaurants',
-      locked: true
+      description: 'Navigate a Japanese convenience store by reading product names in katakana',
+      locked: true,
+      action: 'coming-soon'
     },
     {
-      id: 'scenario-004',
-      title: 'Temple Visits',
+      id: 'restaurant-menu',
+      title: 'Menu Reading Master',
       difficulty: 'Intermediate',
-      description: 'Show proper respect when visiting temples and shrines',
-      locked: true
+      description: 'Order food by reading katakana menu items at Japanese restaurants',
+      locked: true,
+      action: 'coming-soon'
     }
   ]
 
@@ -51,9 +69,9 @@ const PracticePage = () => {
       </div>
 
       <div className="text-center mb-8">
-        <h1 className="text-4xl font-bold text-white mb-4">Practice Scenarios</h1>
+        <h1 className="text-4xl font-bold text-white mb-4">Japanese Reading Practice</h1>
         <p className="text-xl text-blue-100">
-          Apply your cultural knowledge in real-world situations
+          Practice reading katakana in real-world Japan scenarios! 🎌
         </p>
       </div>
 
@@ -61,9 +79,10 @@ const PracticePage = () => {
         {scenarios.map((scenario) => (
           <div
             key={scenario.id}
+            onClick={() => handleScenarioClick(scenario)}
             className={`
               bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20
-              ${scenario.locked ? 'opacity-60' : 'hover:bg-white/15 cursor-pointer'}
+              ${scenario.locked ? 'opacity-60' : 'hover:bg-white/15 cursor-pointer hover:border-yellow-400/50'}
               transition-all
             `}
           >
@@ -73,20 +92,45 @@ const PracticePage = () => {
             </div>
             <h3 className="text-xl font-semibold text-white mb-2">{scenario.title}</h3>
             <p className="text-sm text-yellow-300 mb-2">{scenario.difficulty}</p>
-            <p className="text-blue-100">{scenario.description}</p>
+            <p className="text-blue-100 mb-3">{scenario.description}</p>
+
+            {!scenario.locked && scenario.action === 'practice' && (
+              <div className="flex items-center text-green-400 text-sm">
+                <span className="mr-2">▶</span>
+                Click to practice reading!
+              </div>
+            )}
+
             {scenario.locked && (
               <p className="text-sm text-gray-400 mt-4">Complete more lessons to unlock</p>
+            )}
+
+            {scenario.action === 'coming-soon' && !scenario.locked && (
+              <div className="flex items-center text-orange-400 text-sm">
+                <span className="mr-2">🚧</span>
+                Coming soon!
+              </div>
             )}
           </div>
         ))}
       </div>
 
-      <div className="mt-12 bg-yellow-500/20 border border-yellow-500/30 rounded-xl p-6">
-        <h2 className="text-2xl font-bold text-white mb-4">Coming Soon: More Scenarios</h2>
-        <p className="text-blue-100">
-          We're developing more practice scenarios based on community feedback. Each scenario
-          will help you build confidence for real interactions in Japan.
+      <div className="mt-12 bg-blue-500/20 border border-blue-500/30 rounded-xl p-6">
+        <h2 className="text-2xl font-bold text-white mb-4">🎯 Practice Your Katakana Skills!</h2>
+        <p className="text-blue-100 mb-4">
+          These scenarios let you apply your katakana knowledge in real Japanese situations.
+          Perfect for preparing for your Japan trip! 🇯🇵
         </p>
+        <div className="grid md:grid-cols-2 gap-4 text-sm">
+          <div className="bg-white/10 rounded-lg p-3">
+            <span className="text-green-400 font-semibold">▶ Available Now:</span>
+            <p className="text-blue-200 mt-1">Street signs and anime shop reading practice</p>
+          </div>
+          <div className="bg-white/10 rounded-lg p-3">
+            <span className="text-orange-400 font-semibold">🚧 Coming Soon:</span>
+            <p className="text-blue-200 mt-1">Konbini adventures and menu reading challenges</p>
+          </div>
+        </div>
       </div>
 
       {/* Bottom Navigation */}
